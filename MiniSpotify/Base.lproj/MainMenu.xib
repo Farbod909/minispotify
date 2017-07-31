@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -16,19 +17,102 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="axv-mq-BWH" userLabel="StatusMenuController" customClass="StatusMenuController" customModule="MiniSpotify" customModuleProvider="target">
             <connections>
+                <outlet property="musicView" destination="z6L-6M-KhE" id="whR-GP-lEt"/>
                 <outlet property="statusMenu" destination="A7s-Wp-7Te" id="6QQ-wY-fjR"/>
             </connections>
         </customObject>
         <menu id="A7s-Wp-7Te">
             <items>
-                <menuItem title="Quit" id="EgI-vz-LT3">
+                <menuItem title="Music" id="SJo-WI-vUF">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="quitClicked:" target="axv-mq-BWH" id="z0H-YK-3dl"/>
-                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="474" y="141"/>
         </menu>
+        <customView id="z6L-6M-KhE" customClass="MusicView" customModule="MiniSpotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="308" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsV-VA-RqP">
+                    <rect key="frame" x="7" y="0.0" width="90" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="default_album_art" id="L9E-bE-XUP"/>
+                </imageView>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J8X-qB-yPd">
+                    <rect key="frame" x="179" y="3" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="playImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="OY3-4r-H0i">
+                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7U-sa-btw">
+                    <rect key="frame" x="229" y="8" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="skipImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="wc4-bi-okR">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2K1-od-Mat">
+                    <rect key="frame" x="139" y="8" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="skipBackImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="g6x-k4-QzW">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-4S-LYk">
+                    <rect key="frame" x="103" y="62" width="207" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Song Name" id="9Th-dH-6yH">
+                        <font key="font" metaFont="system" size="17"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qy-06F">
+                    <rect key="frame" x="103" y="43" width="207" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Artist" id="XUI-gN-JUh">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDB-8k-oBe">
+                    <rect key="frame" x="289" y="0.0" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="quitImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="eXB-Up-yCU">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="quitApplication:" target="z6L-6M-KhE" id="yqd-aQ-c8d"/>
+                    </connections>
+                </button>
+            </subviews>
+            <connections>
+                <outlet property="albumCover" destination="FsV-VA-RqP" id="b1f-bz-MZK"/>
+                <outlet property="playPauseButton" destination="J8X-qB-yPd" id="1X3-TK-jOb"/>
+            </connections>
+            <point key="canvasLocation" x="614" y="303"/>
+        </customView>
+        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="K5M-c6-fd2">
+            <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="YGp-KX-zzc">
+                <font key="font" metaFont="system"/>
+                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+            </textFieldCell>
+        </textField>
     </objects>
+    <resources>
+        <image name="default_album_art" width="1400" height="1400"/>
+        <image name="playImage" width="300" height="300"/>
+        <image name="quitImage" width="512" height="512"/>
+        <image name="skipBackImage" width="512" height="512"/>
+        <image name="skipImage" width="512" height="512"/>
+    </resources>
 </document>

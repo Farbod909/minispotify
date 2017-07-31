@@ -11,15 +11,20 @@ import Cocoa
 class StatusMenuController: NSObject {
     
     @IBOutlet weak var statusMenu: NSMenu!
-    
+    @IBOutlet weak var musicView: MusicView!
+    var musicMenuItem: NSMenuItem!
+
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     override func awakeFromNib() {
-        statusItem.title = "MiniSpotify"
-        statusItem.menu = statusMenu
-    }
+        let icon = NSImage(named: "spotifyIcon")
+        icon?.isTemplate = true // for dark mode
+        statusItem.image = icon
 
-    @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        statusItem.menu = statusMenu
+
+        musicMenuItem = statusMenu.item(withTitle: "Music")
+        musicMenuItem.view = musicView
+
     }
 }
