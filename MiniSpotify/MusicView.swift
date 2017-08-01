@@ -26,26 +26,15 @@ class MusicView: NSView {
         }
     }
 
-    func pause() {
-        playPauseButton.image = #imageLiteral(resourceName: "playImage")
-
-        let script =    "tell application \"Spotify\"\n" +
-                            "pause\n" +
-                        "end tell"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
-    }
-
     func play() {
         playPauseButton.image = #imageLiteral(resourceName: "pauseImage")
-
-        let script =    "tell application \"Spotify\"\n" +
-                            "play\n" +
-                        "end tell"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        SpotifyLocalAPI.play()
     }
 
+    func pause() {
+        playPauseButton.image = #imageLiteral(resourceName: "playImage")
+        SpotifyLocalAPI.pause()
+    }
 
     @IBAction func quitApplication(_ sender: NSButton) {
         NSApplication.shared().terminate(self)
