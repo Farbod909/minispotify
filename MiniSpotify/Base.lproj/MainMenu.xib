@@ -45,6 +45,9 @@
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="playPauseToggle:" target="z6L-6M-KhE" id="YA9-Ft-Z1W"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7U-sa-btw">
                     <rect key="frame" x="229" y="10" width="30" height="30"/>
@@ -126,7 +129,9 @@
             </subviews>
             <connections>
                 <outlet property="albumCover" destination="FsV-VA-RqP" id="b1f-bz-MZK"/>
+                <outlet property="artistName" destination="arh-qy-06F" id="24G-00-hD6"/>
                 <outlet property="playPauseButton" destination="J8X-qB-yPd" id="1X3-TK-jOb"/>
+                <outlet property="songName" destination="7ed-4S-LYk" id="50l-SM-430"/>
             </connections>
             <point key="canvasLocation" x="597.5" y="235.5"/>
         </customView>
