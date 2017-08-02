@@ -86,6 +86,18 @@ class MusicView: NSView {
         }
     }
 
+    func setLoop(enabled: Bool) {
+        if enabled {
+            if loopButton.state == 0 {
+                loopButton.setNextState()
+            }
+        } else {
+            if loopButton.state == 1 {
+                loopButton.setNextState()
+            }
+        }
+    }
+
     func setAlbumArtwork(url: String) {
         if url != currentAlbumArtURL {
             let when = DispatchTime.now() + 0.5
@@ -131,6 +143,7 @@ class MusicView: NSView {
         setIsPlaying(state: SpotifyLocalAPI.getPlayerState())
         setAlbumArtwork(url: SpotifyLocalAPI.getCurrentAlbumArtURL())
         setShuffle(enabled: SpotifyLocalAPI.getShufflingStatus())
+        setLoop(enabled: SpotifyLocalAPI.getRepeatingStatus())
     }
 
     func play() {
@@ -169,6 +182,16 @@ class MusicView: NSView {
         } else {
             // user clicked the shuffle button to enable it
             SpotifyLocalAPI.enableShuffle()
+        }
+    }
+
+    @IBAction func loopToggle(_ sender: NSButton) {
+        if loopButton.state == 0 {
+            // user clicked the loop button to disable it
+            SpotifyLocalAPI.disableLoop()
+        } else {
+            // user clicked the loop button to enable it
+            SpotifyLocalAPI.enableLoop()
         }
     }
 

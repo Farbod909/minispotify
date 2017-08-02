@@ -65,8 +65,8 @@ class SpotifyLocalAPI {
     static func getShufflingStatus() -> Bool {
         var shuffling = false
         let script =    "tell application \"Spotify\"\n" +
-            "set shuffleIsOn to shuffling as string\n" +
-        "end tell"
+                            "set shuffleIsOn to shuffling as string\n" +
+                        "end tell"
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
@@ -77,6 +77,21 @@ class SpotifyLocalAPI {
         return shuffling
     }
 
+    static func getRepeatingStatus() -> Bool {
+        var loop = false
+        let script =    "tell application \"Spotify\"\n" +
+                            "set LoopIsOn to repeating as string\n" +
+                        "end tell"
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
+            if output.stringValue == "true" {
+                loop = true
+            }
+        }
+        return loop
+    }
+
     static func enableShuffle() {
         let script = "tell application \"Spotify\" to set shuffling to true"
         var error: NSDictionary?
@@ -85,6 +100,18 @@ class SpotifyLocalAPI {
 
     static func disableShuffle() {
         let script = "tell application \"Spotify\" to set shuffling to false"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
+    static func enableLoop() {
+        let script = "tell application \"Spotify\" to set repeating to true"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
+    static func disableLoop() {
+        let script = "tell application \"Spotify\" to set repeating to false"
         var error: NSDictionary?
         NSAppleScript(source: script)?.executeAndReturnError(&error)
     }

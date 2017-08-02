@@ -118,6 +118,9 @@
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="loopToggle:" target="z6L-6M-KhE" id="VJL-pI-HbR"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfn-vW-CfN">
                     <rect key="frame" x="314" y="69" width="16" height="16"/>
