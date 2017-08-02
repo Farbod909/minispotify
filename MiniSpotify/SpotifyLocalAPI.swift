@@ -62,6 +62,33 @@ class SpotifyLocalAPI {
         return url
     }
 
+    static func getShufflingStatus() -> Bool {
+        var shuffling = false
+        let script =    "tell application \"Spotify\"\n" +
+            "set shuffleIsOn to shuffling as string\n" +
+        "end tell"
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
+            if output.stringValue == "true" {
+                shuffling = true
+            }
+        }
+        return shuffling
+    }
+
+    static func enableShuffle() {
+        let script = "tell application \"Spotify\" to set shuffling to true"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
+    static func disableShuffle() {
+        let script = "tell application \"Spotify\" to set shuffling to false"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
     static func play() {
         let script = "tell application \"Spotify\" to play"
         var error: NSDictionary?

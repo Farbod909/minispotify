@@ -107,6 +107,9 @@
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="shuffleToggle:" target="z6L-6M-KhE" id="Dt3-dV-uqk"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D27-oA-Adc">
                     <rect key="frame" x="269" y="17" width="16" height="16"/>

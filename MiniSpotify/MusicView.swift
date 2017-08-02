@@ -74,6 +74,18 @@ class MusicView: NSView {
         }
     }
 
+    func setShuffle(enabled: Bool) {
+        if enabled {
+            if shuffleButton.state == 0 {
+                shuffleButton.setNextState()
+            }
+        } else {
+            if shuffleButton.state == 1 {
+                shuffleButton.setNextState()
+            }
+        }
+    }
+
     func setAlbumArtwork(url: String) {
         if url != currentAlbumArtURL {
             let when = DispatchTime.now() + 0.5
@@ -118,6 +130,7 @@ class MusicView: NSView {
         setArtist(name: SpotifyLocalAPI.getCurrentArtist())
         setIsPlaying(state: SpotifyLocalAPI.getPlayerState())
         setAlbumArtwork(url: SpotifyLocalAPI.getCurrentAlbumArtURL())
+        setShuffle(enabled: SpotifyLocalAPI.getShufflingStatus())
     }
 
     func play() {
@@ -147,6 +160,16 @@ class MusicView: NSView {
     @IBAction func previousTrackClicked(_ sender: NSButton) {
         SpotifyLocalAPI.previousTrack()
         updateSongData()
+    }
+
+    @IBAction func shuffleToggle(_ sender: NSButton) {
+        if shuffleButton.state == 0 {
+            // user clicked the shuffle button to disable it
+            SpotifyLocalAPI.disableShuffle()
+        } else {
+            // user clicked the shuffle button to enable it
+            SpotifyLocalAPI.enableShuffle()
+        }
     }
 
     @IBAction func quitApplication(_ sender: NSButton) {
