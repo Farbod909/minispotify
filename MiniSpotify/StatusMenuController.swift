@@ -8,13 +8,15 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject {
+class StatusMenuController: NSObject, NSMenuDelegate {
     
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var musicView: MusicView!
     var musicMenuItem: NSMenuItem!
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+
+    var menuIsOpen = false
     
     override func awakeFromNib() {
         // set status bar icon
@@ -26,15 +28,26 @@ class StatusMenuController: NSObject {
         musicMenuItem = statusMenu.item(withTitle: "Music")
         musicMenuItem.view = musicView
 
+        statusMenu.delegate = self
+
         // update song info upon start and every second thereafter
-        update()
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        musicView.updateSongData()
+        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
         let rl = RunLoop.main
         rl.add(timer, forMode: RunLoopMode.commonModes)
     }
 
     func update() {
-        musicView.updateSongData()
+        if menuIsOpen {
+            musicView.updateSongData()
+        }
     }
 
+    func menuWillOpen(_ menu: NSMenu) {
+        menuIsOpen = true
+    }
+
+    func menuDidClose(_ menu: NSMenu) {
+        menuIsOpen = false
+    }
 }
