@@ -21,7 +21,7 @@ class StatusMenuController: NSObject, NSMenuDelegate {
     override func awakeFromNib() {
         // set status bar icon
         let icon = #imageLiteral(resourceName: "spotifyIcon")
-        icon.isTemplate = true // for dark mode
+        icon.isTemplate = true
         statusItem.image = icon
 
         statusItem.menu = statusMenu
@@ -29,6 +29,8 @@ class StatusMenuController: NSObject, NSMenuDelegate {
         musicMenuItem.view = musicView
 
         statusMenu.delegate = self
+
+        musicView.setInitialTemplateIcons()
 
         // update song info upon start and every 0.1 seconds thereafter
         musicView.updateSongData()

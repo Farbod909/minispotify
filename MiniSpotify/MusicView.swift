@@ -13,11 +13,48 @@ class MusicView: NSView {
     @IBOutlet weak var songName: NSTextField!
     @IBOutlet weak var artistName: NSTextField!
     @IBOutlet weak var playPauseButton: NSButton!
+    @IBOutlet weak var previousTrackButton: NSButton!
+    @IBOutlet weak var nextTrackButton: NSButton!
+    @IBOutlet weak var shuffleButton: NSButton!
+    @IBOutlet weak var loopButton: NSButton!
+    @IBOutlet weak var saveButton: NSButton!
+    @IBOutlet weak var songOptionsButton: NSButton!
+    @IBOutlet weak var quitButton: NSButton!
 
     var isPlaying = false
     var currentAlbumArtURL = ""
-    var currentAlbumArt = NSImage()
     var albumArtIsLoading = true
+
+    let playIcon = #imageLiteral(resourceName: "playImage")
+    let pauseIcon = #imageLiteral(resourceName: "pauseImage")
+    let nextTrackIcon = #imageLiteral(resourceName: "skipImage")
+    let previousTrackIcon = #imageLiteral(resourceName: "skipBackImage")
+    let shuffleIcon = #imageLiteral(resourceName: "shuffleImage")
+    let loopIcon = #imageLiteral(resourceName: "loopImage")
+    let saveIcon = #imageLiteral(resourceName: "plusImage")
+    let songOptionsIcon = #imageLiteral(resourceName: "dropdownIcon")
+    let quitIcon = #imageLiteral(resourceName: "quitImage")
+
+    func setInitialTemplateIcons() {
+        playIcon.isTemplate = true
+        pauseIcon.isTemplate = true
+        nextTrackIcon.isTemplate = true
+        previousTrackIcon.isTemplate = true
+        shuffleIcon.isTemplate = true
+        loopIcon.isTemplate = true
+        saveIcon.isTemplate = true
+        songOptionsIcon.isTemplate = true
+        quitIcon.isTemplate = true
+
+        // play/pause icon is set in the setIsPlaying() function
+        nextTrackButton.image = nextTrackIcon
+        previousTrackButton.image = previousTrackIcon
+        shuffleButton.image = shuffleIcon
+        loopButton.image = loopIcon
+        saveButton.image = saveIcon
+        songOptionsButton.image = songOptionsIcon
+        quitButton.image = quitIcon
+    }
 
     func setSongName(name: String) {
         self.songName.stringValue = name
@@ -30,10 +67,10 @@ class MusicView: NSView {
     func setIsPlaying(state: String) {
         if state == "playing" {
             isPlaying = true
-            playPauseButton.image = #imageLiteral(resourceName: "pauseImage")
+            playPauseButton.image = pauseIcon
         } else {
             isPlaying = false
-            playPauseButton.image = #imageLiteral(resourceName: "playImage")
+            playPauseButton.image = playIcon
         }
     }
 
@@ -42,7 +79,7 @@ class MusicView: NSView {
             let when = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: when) {
                 if self.albumArtIsLoading {
-                    self.albumCover.image = #imageLiteral(resourceName: "default_album_art")
+                    self.albumCover.image = #imageLiteral(resourceName: "defaultAlbumArt")
                 }
             }
             downloadAndDisplayAlbumArtwork(url: url)
@@ -84,12 +121,12 @@ class MusicView: NSView {
     }
 
     func play() {
-        playPauseButton.image = #imageLiteral(resourceName: "pauseImage")
+        playPauseButton.image = pauseIcon
         SpotifyLocalAPI.play()
     }
 
     func pause() {
-        playPauseButton.image = #imageLiteral(resourceName: "playImage")
+        playPauseButton.image = playIcon
         SpotifyLocalAPI.pause()
     }
 
