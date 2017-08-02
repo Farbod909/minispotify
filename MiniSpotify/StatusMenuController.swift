@@ -30,7 +30,7 @@ class StatusMenuController: NSObject, NSMenuDelegate {
 
         statusMenu.delegate = self
 
-        // update song info upon start and every second thereafter
+        // update song info upon start and every 0.1 seconds thereafter
         musicView.updateSongData()
         let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
         let rl = RunLoop.main

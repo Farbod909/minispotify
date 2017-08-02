@@ -17,6 +17,7 @@ class MusicView: NSView {
     var isPlaying = false
     var currentAlbumArtURL = ""
     var currentAlbumArt = NSImage()
+    var albumArtIsLoading = true
 
     func setSongName(name: String) {
         self.songName.stringValue = name
@@ -38,23 +39,32 @@ class MusicView: NSView {
 
     func setAlbumArtwork(url: String) {
         if url != currentAlbumArtURL {
+            let when = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                if self.albumArtIsLoading {
+                    self.albumCover.image = #imageLiteral(resourceName: "default_album_art")
+                }
+            }
             downloadAndDisplayAlbumArtwork(url: url)
             currentAlbumArtURL = url
         }
     }
 
     func downloadAndDisplayAlbumArtwork(url: String) {
+        self.albumArtIsLoading = true
         let albumArtURL = URL(string: url)!
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: albumArtURL) { (data, response, error) in
             if let e = error {
                 Swift.print("Error downloading picture: \(e)")
             } else {
-                if let res = response as? HTTPURLResponse {
-                    Swift.print("Downloaded picture with response code \(res.statusCode)")
+                if (response as? HTTPURLResponse) != nil {
                     if let imageData = data {
                         let image = NSImage(data: imageData)
-                        self.albumCover.image = image
+                        DispatchQueue.main.async {
+                            self.albumCover.image = image
+                            self.albumArtIsLoading = false
+                        }
                     } else {
                         Swift.print("Couldn't get image: Image is nil")
                     }
