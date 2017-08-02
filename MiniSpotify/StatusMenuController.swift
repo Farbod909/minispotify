@@ -17,19 +17,24 @@ class StatusMenuController: NSObject {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     override func awakeFromNib() {
-        let icon = NSImage(named: "spotifyIcon")
-        icon?.isTemplate = true // for dark mode
+        // set status bar icon
+        let icon = #imageLiteral(resourceName: "spotifyIcon")
+        icon.isTemplate = true // for dark mode
         statusItem.image = icon
 
         statusItem.menu = statusMenu
-
         musicMenuItem = statusMenu.item(withTitle: "Music")
         musicMenuItem.view = musicView
 
-        musicView.songName.stringValue = SpotifyLocalAPI.getCurrentSongName()
-        musicView.artistName.stringValue = SpotifyLocalAPI.getCurrentArtist()
-        musicView.setIsPlayingState(state: SpotifyLocalAPI.getPlayerState())
+        // update song info upon start and every second thereafter
+        update()
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        let rl = RunLoop.main
+        rl.add(timer, forMode: RunLoopMode.commonModes)
     }
 
-    
+    func update() {
+        musicView.updateSongData()
+    }
+
 }

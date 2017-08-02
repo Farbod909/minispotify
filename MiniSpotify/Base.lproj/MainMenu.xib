@@ -56,6 +56,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="nextTrackClicked:" target="z6L-6M-KhE" id="AxE-r9-vbQ"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2K1-od-Mat">
                     <rect key="frame" x="139" y="10" width="30" height="30"/>
@@ -64,6 +67,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="previousTrackClicked:" target="z6L-6M-KhE" id="g3U-Pp-CGA"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-4S-LYk">
                     <rect key="frame" x="103" y="67" width="211" height="21"/>

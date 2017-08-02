@@ -13,12 +13,12 @@ class SpotifyLocalAPI {
     static func getCurrentSongName() -> String {
         var songName = ""
         let script =    "set track to getCurrentTrackName()\n" +
-            "on getCurrentTrackName()\n" +
-            "tell application \"Spotify\"\n" +
-            "set currentTrackName to name of current track as string\n" +
-            "return currentTrackName\n" +
-            "end tell\n" +
-        "end getCurrentTrackName"
+                        "on getCurrentTrackName()\n" +
+                            "tell application \"Spotify\"\n" +
+                                "set currentTrackName to name of current track as string\n" +
+                                "return currentTrackName\n" +
+                            "end tell\n" +
+                        "end getCurrentTrackName"
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
@@ -30,12 +30,12 @@ class SpotifyLocalAPI {
     static func getCurrentArtist() -> String {
         var artist = ""
         let script =    "set artist to getCurrentArtist()\n" +
-            "on getCurrentArtist()\n" +
-            "tell application \"Spotify\"\n" +
-            "set currentArtist to artist of current track as string\n" +
-            "return currentArtist\n" +
-            "end tell\n" +
-        "end getCurrentArtist"
+                        "on getCurrentArtist()\n" +
+                            "tell application \"Spotify\"\n" +
+                                "set currentArtist to artist of current track as string\n" +
+                                "return currentArtist\n" +
+                            "end tell\n" +
+                        "end getCurrentArtist"
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
@@ -47,18 +47,35 @@ class SpotifyLocalAPI {
     static func getPlayerState() -> String {
         var state = ""
         let script =    "set state to getCurrentState()\n" +
-            "on getCurrentState()\n" +
-            "tell application \"Spotify\"\n" +
-            "set currentState to player state as string\n" +
-            "return currentState\n" +
-            "end tell\n" +
-        "end getCurrentState"
+                        "on getCurrentState()\n" +
+                            "tell application \"Spotify\"\n" +
+                                "set currentState to player state as string\n" +
+                                "return currentState\n" +
+                            "end tell\n" +
+                        "end getCurrentState"
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
             state = output.stringValue ?? "N/A"
         }
         return state
+    }
+
+    static func getCurrentAlbumArtURL() -> String {
+        var url = ""
+        let script =    "set albumArtURL to getCurrentAlbumArtURL()\n" +
+                        "on getCurrentAlbumArtURL()\n" +
+                            "tell application \"Spotify\"\n" +
+                                "set artUrl to artwork url of current track as string\n" +
+                                "return artUrl\n" +
+                            "end tell\n" +
+                        "end getCurrentAlbumArtURL"
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
+            url = output.stringValue ?? "N/A"
+        }
+        return url
     }
 
     static func play() {
@@ -72,6 +89,22 @@ class SpotifyLocalAPI {
     static func pause() {
         let script =    "tell application \"Spotify\"\n" +
                             "pause\n" +
+                        "end tell"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
+    static func nextTrack() {
+        let script =    "tell application \"Spotify\"\n" +
+                            "next track\n" +
+                        "end tell"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
+    static func previousTrack() {
+        let script =    "tell application \"Spotify\"\n" +
+                            "previous track\n" +
                         "end tell"
         var error: NSDictionary?
         NSAppleScript(source: script)?.executeAndReturnError(&error)
