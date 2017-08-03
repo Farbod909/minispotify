@@ -12,9 +12,9 @@ class SpotifyLocalAPI {
 
     static let baseAPIString = "tell application \"Spotify\" to "
 
-    private static func retriveValue(from command: String) -> String {
+    private static func retriveValue(from query: String) -> String {
         var result = ""
-        let script = SpotifyLocalAPI.baseAPIString + command
+        let script = SpotifyLocalAPI.baseAPIString + query
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
