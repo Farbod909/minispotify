@@ -35,15 +35,22 @@ class StatusMenuController: NSObject, NSMenuDelegate {
         // Play/pause status is updated every tenth of a second, but
         // song data is updated every second. This is in order to
         // reduce CPU usage as much as possible.
-        musicView.updateSongData()
-        let playPauseTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updatePlayPause), userInfo: nil, repeats: true)
-        let songDataTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        let playPauseTimer = Timer.scheduledTimer(
+            timeInterval: 0.1, target: self,
+            selector: #selector(self.updatePlayPause),
+            userInfo: nil, repeats: true)
+        let songDataTimer = Timer.scheduledTimer(
+            timeInterval: 1.0, target: self,
+            selector: #selector(self.updateSongData),
+            userInfo: nil, repeats: true)
         let rl = RunLoop.main
         rl.add(playPauseTimer, forMode: RunLoopMode.commonModes)
         rl.add(songDataTimer, forMode: RunLoopMode.commonModes)
     }
 
-    func update() {
+    // keep updateSongData and updatePlayPause seperate
+    // so they can be called at different frequencies.
+    func updateSongData() {
         if menuIsOpen {
             musicView.updateSongData()
         }
@@ -57,9 +64,8 @@ class StatusMenuController: NSObject, NSMenuDelegate {
 
     func menuWillOpen(_ menu: NSMenu) {
         menuIsOpen = true
-
         updatePlayPause()
-        update()
+        updateSongData()
     }
 
     func menuDidClose(_ menu: NSMenu) {

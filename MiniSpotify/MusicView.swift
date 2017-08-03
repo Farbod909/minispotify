@@ -65,7 +65,33 @@ class MusicView: NSView {
 
         songSlider.cell = SpotifySliderCell()
         songSlider.target = self
-        songSlider.action = #selector(self.sliderChange)
+        songSlider.action = #selector(self.songSliderChanged)
+    }
+
+    // keep updateSongData and updatePlayPause seperate
+    // so they can be called at different frequencies.
+    func updateSongData() {
+        setSongName(name: SpotifyLocalAPI.getCurrentSongName())
+        setArtist(name: SpotifyLocalAPI.getCurrentArtist())
+        setAlbumArtwork(url: SpotifyLocalAPI.getCurrentAlbumArtURL())
+        setShuffle(enabled: SpotifyLocalAPI.getShufflingStatus())
+        setLoop(enabled: SpotifyLocalAPI.getRepeatingStatus())
+        setTimeElapsed(seconds: SpotifyLocalAPI.getCurrentSongPosition())
+        currentSongDuration = SpotifyLocalAPI.getCurrentSongDuration()
+        setSongDuration(milliseconds: currentSongDuration)
+        setSongSliderValue(seconds: SpotifyLocalAPI.getCurrentSongPosition())
+    }
+
+    func updatePlayPause() {
+        setIsPlaying(state: SpotifyLocalAPI.getPlayerState())
+    }
+
+    func updateAllItemsAfterSlightDelay() {
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.updatePlayPause()
+            self.updateSongData()
+        }
     }
 
     func setSongName(name: String) {
@@ -111,6 +137,9 @@ class MusicView: NSView {
     }
 
     func setTimeElapsed(seconds: String) {
+        if seconds == "missing value" {
+            return timeElapsedLabel.stringValue = "--:--"
+        }
         let secondsNum = Double(seconds)
         let minutes = Int(secondsNum! / 60)
         let remainingSeconds = Int(secondsNum! - Double(minutes * 60))
@@ -122,6 +151,9 @@ class MusicView: NSView {
     }
 
     func setSongDuration(milliseconds: String) {
+        if milliseconds == "N/A" {
+            return songDurationLabel.stringValue = "--:--"
+        }
         let secondsNum = Int(Double(milliseconds)! / 1000)
         let minutes = secondsNum / 60
         let remainingSeconds = secondsNum - (minutes * 60)
@@ -133,6 +165,9 @@ class MusicView: NSView {
     }
 
     func setSongSliderValue(seconds: String) {
+        if seconds == "missing value" {
+            return songSlider.doubleValue = 0.0
+        }
         let elapsedSecondsNum = Double(seconds)!
         let durationSecondsNum = Int(Double(currentSongDuration)! / 1000)
 
@@ -140,6 +175,9 @@ class MusicView: NSView {
     }
 
     func setAlbumArtwork(url: String) {
+        if url == "N/A" {
+            return self.albumCover.image = #imageLiteral(resourceName: "defaultAlbumArt")
+        }
         if url != currentAlbumArtURL {
             let when = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: when) {
@@ -178,22 +216,6 @@ class MusicView: NSView {
         downloadPicTask.resume()
     }
 
-    func updateSongData() {
-        setSongName(name: SpotifyLocalAPI.getCurrentSongName())
-        setArtist(name: SpotifyLocalAPI.getCurrentArtist())
-        setAlbumArtwork(url: SpotifyLocalAPI.getCurrentAlbumArtURL())
-        setShuffle(enabled: SpotifyLocalAPI.getShufflingStatus())
-        setLoop(enabled: SpotifyLocalAPI.getRepeatingStatus())
-        setTimeElapsed(seconds: SpotifyLocalAPI.getCurrentSongPosition())
-        currentSongDuration = SpotifyLocalAPI.getCurrentSongDuration()
-        setSongDuration(milliseconds: currentSongDuration)
-        setSongSliderValue(seconds: SpotifyLocalAPI.getCurrentSongPosition())
-    }
-
-    func updatePlayPause() {
-        setIsPlaying(state: SpotifyLocalAPI.getPlayerState())
-    }
-
     func play() {
         playPauseButton.image = pauseIcon
         SpotifyLocalAPI.play()
@@ -204,14 +226,13 @@ class MusicView: NSView {
         SpotifyLocalAPI.pause()
     }
 
-    func sliderChange() {
+    func songSliderChanged() {
         let durationSecondsNum = Double(currentSongDuration)! / 1000
         SpotifyLocalAPI.setCurrentSongPosition(seconds: songSlider.doubleValue * durationSecondsNum)
-        let when = DispatchTime.now() + 0.1
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.updatePlayPause()
-            self.updateSongData()
-        }
+        // all items would have updated eventually but
+        // this forces all items to be updated almost
+        // immediately after
+        updateAllItemsAfterSlightDelay()
     }
 
     @IBAction func playPauseToggle(_ sender: NSButton) {
@@ -225,20 +246,18 @@ class MusicView: NSView {
 
     @IBAction func nextTrackClicked(_ sender: NSButton) {
         SpotifyLocalAPI.nextTrack()
-        let when = DispatchTime.now() + 0.1
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.updatePlayPause()
-            self.updateSongData()
-        }
+        // all items would have updated eventually but
+        // this forces all items to be updated almost
+        // immediately after
+        updateAllItemsAfterSlightDelay()
     }
 
     @IBAction func previousTrackClicked(_ sender: NSButton) {
         SpotifyLocalAPI.previousTrack()
-        let when = DispatchTime.now() + 0.1
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.updatePlayPause()
-            self.updateSongData()
-        }
+        // all items would have updated eventually but
+        // this forces all items to be updated almost
+        // immediately after
+        updateAllItemsAfterSlightDelay()
     }
 
     @IBAction func shuffleToggle(_ sender: NSButton) {
