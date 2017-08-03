@@ -207,6 +207,11 @@ class MusicView: NSView {
     func sliderChange() {
         let durationSecondsNum = Double(currentSongDuration)! / 1000
         SpotifyLocalAPI.setCurrentSongPosition(seconds: songSlider.doubleValue * durationSecondsNum)
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.updatePlayPause()
+            self.updateSongData()
+        }
     }
 
     @IBAction func playPauseToggle(_ sender: NSButton) {
@@ -220,12 +225,20 @@ class MusicView: NSView {
 
     @IBAction func nextTrackClicked(_ sender: NSButton) {
         SpotifyLocalAPI.nextTrack()
-        updateSongData()
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.updatePlayPause()
+            self.updateSongData()
+        }
     }
 
     @IBAction func previousTrackClicked(_ sender: NSButton) {
         SpotifyLocalAPI.previousTrack()
-        updateSongData()
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.updatePlayPause()
+            self.updateSongData()
+        }
     }
 
     @IBAction func shuffleToggle(_ sender: NSButton) {
