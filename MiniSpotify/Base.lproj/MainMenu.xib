@@ -30,16 +30,16 @@
             <point key="canvasLocation" x="474" y="141"/>
         </menu>
         <customView id="z6L-6M-KhE" customClass="MusicView" customModule="MiniSpotify" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="339" height="95"/>
+            <rect key="frame" x="0.0" y="0.0" width="383" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsV-VA-RqP">
-                    <rect key="frame" x="7" y="2" width="90" height="90"/>
+                    <rect key="frame" x="5" y="1" width="98" height="98"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="defaultAlbumArt" id="L9E-bE-XUP"/>
                 </imageView>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J8X-qB-yPd">
-                    <rect key="frame" x="179" y="5" width="40" height="40"/>
+                    <rect key="frame" x="201" y="10" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="playImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="OY3-4r-H0i">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7U-sa-btw">
-                    <rect key="frame" x="229" y="10" width="30" height="30"/>
+                    <rect key="frame" x="251" y="15" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="skipImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="wc4-bi-okR">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -61,7 +61,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2K1-od-Mat">
-                    <rect key="frame" x="139" y="10" width="30" height="30"/>
+                    <rect key="frame" x="161" y="15" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="skipBackImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="g6x-k4-QzW">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -72,7 +72,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-4S-LYk">
-                    <rect key="frame" x="103" y="67" width="205" height="21"/>
+                    <rect key="frame" x="111" y="72" width="241" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Song Name" id="9Th-dH-6yH">
                         <font key="font" metaFont="system" size="17"/>
@@ -81,7 +81,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qy-06F">
-                    <rect key="frame" x="103" y="48" width="205" height="17"/>
+                    <rect key="frame" x="111" y="53" width="241" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Artist" id="XUI-gN-JUh">
                         <font key="font" metaFont="system"/>
@@ -90,7 +90,7 @@
                     </textFieldCell>
                 </textField>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDB-8k-oBe">
-                    <rect key="frame" x="320" y="0.0" width="16" height="16"/>
+                    <rect key="frame" x="365" y="0.0" width="14" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="quitImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="eXB-Up-yCU">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -101,7 +101,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rHq-Va-cFb">
-                    <rect key="frame" x="113" y="17" width="16" height="16"/>
+                    <rect key="frame" x="135" y="22" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffleImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="juJ-9o-heJ">
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -112,7 +112,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D27-oA-Adc">
-                    <rect key="frame" x="269" y="17" width="16" height="16"/>
+                    <rect key="frame" x="291" y="22" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="loopImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="RAZ-if-Xlw">
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -123,7 +123,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfn-vW-CfN">
-                    <rect key="frame" x="314" y="69" width="16" height="16"/>
+                    <rect key="frame" x="358" y="74" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="plusImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Jyd-zM-Hem">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -131,9 +131,40 @@
                     </buttonCell>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb3-b6-jwa">
-                    <rect key="frame" x="316" y="48" width="12" height="12"/>
+                    <rect key="frame" x="360" y="53" width="12" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="dropdownIcon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="02X-ky-BYg">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lpe-zY-lVs">
+                    <rect key="frame" x="133" y="-5" width="176" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="lXq-xB-c2r"/>
+                </slider>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52Y-Bf-FZJ">
+                    <rect key="frame" x="310" y="-5" width="32" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="-:--" id="fsb-nB-lMe">
+                        <font key="font" metaFont="system" size="10"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKw-Ny-cVT">
+                    <rect key="frame" x="108" y="-5" width="31" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0:00" id="2yS-Wx-oeK">
+                        <font key="font" metaFont="system" size="10"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihS-hQ-wVY">
+                    <rect key="frame" x="348" y="0.0" width="14" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="settingsImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ggm-Or-Vts">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -148,11 +179,15 @@
                 <outlet property="previousTrackButton" destination="2K1-od-Mat" id="SUN-zh-EPk"/>
                 <outlet property="quitButton" destination="bDB-8k-oBe" id="fjN-Bx-Rqa"/>
                 <outlet property="saveButton" destination="cfn-vW-CfN" id="OSl-RQ-XhI"/>
+                <outlet property="settingsButton" destination="ihS-hQ-wVY" id="nIA-UG-KVb"/>
                 <outlet property="shuffleButton" destination="rHq-Va-cFb" id="Y3r-1s-uW5"/>
+                <outlet property="songDurationLabel" destination="52Y-Bf-FZJ" id="cqY-xK-keX"/>
                 <outlet property="songName" destination="7ed-4S-LYk" id="50l-SM-430"/>
                 <outlet property="songOptionsButton" destination="Sb3-b6-jwa" id="i0V-Se-ulg"/>
+                <outlet property="songSlider" destination="Lpe-zY-lVs" id="78B-fY-FSQ"/>
+                <outlet property="timeElapsedLabel" destination="EKw-Ny-cVT" id="liO-Yt-Q8E"/>
             </connections>
-            <point key="canvasLocation" x="597.5" y="235.5"/>
+            <point key="canvasLocation" x="609.5" y="238"/>
         </customView>
         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="K5M-c6-fd2">
             <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
@@ -171,6 +206,7 @@
         <image name="playImage" width="300" height="300"/>
         <image name="plusImage" width="31.399999618530273" height="31.399999618530273"/>
         <image name="quitImage" width="512" height="512"/>
+        <image name="settingsImage" width="116" height="116"/>
         <image name="shuffleImage" width="169" height="169"/>
         <image name="skipBackImage" width="512" height="512"/>
         <image name="skipImage" width="512" height="512"/>

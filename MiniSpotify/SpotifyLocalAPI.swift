@@ -62,6 +62,36 @@ class SpotifyLocalAPI {
         return url
     }
 
+    static func getCurrentSongDuration() -> String {
+        var duration = ""
+        let script =    "tell application \"Spotify\"\n" +
+                            "set songDuration to duration of current track as string\n" +
+                        "end tell"
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
+            duration = output.stringValue ?? "N/A"
+        }
+        return duration
+    }
+
+    static func getCurrentSongPosition() -> String {
+        var position = ""
+        let script =    "tell application \"Spotify\" to set position to player position"
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
+            position = output.stringValue ?? "N/A"
+        }
+        return position
+    }
+
+    static func setCurrentSongPosition(seconds: Double) {
+        let script = "tell application \"Spotify\" to set player position to \(seconds)"
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
     static func getShufflingStatus() -> Bool {
         var shuffling = false
         let script =    "tell application \"Spotify\"\n" +

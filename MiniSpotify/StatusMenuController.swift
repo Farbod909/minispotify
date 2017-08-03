@@ -30,7 +30,7 @@ class StatusMenuController: NSObject, NSMenuDelegate {
 
         statusMenu.delegate = self
 
-        musicView.setInitialTemplateIcons()
+        musicView.initialize()
 
         // update song info upon start and every 0.1 seconds thereafter
         musicView.updateSongData()

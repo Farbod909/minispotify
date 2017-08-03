@@ -20,10 +20,15 @@ class MusicView: NSView {
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var songOptionsButton: NSButton!
     @IBOutlet weak var quitButton: NSButton!
+    @IBOutlet weak var settingsButton: NSButton!
+    @IBOutlet weak var songSlider: NSSlider!
+    @IBOutlet weak var timeElapsedLabel: NSTextField!
+    @IBOutlet weak var songDurationLabel: NSTextField!
 
     var isPlaying = false
     var currentAlbumArtURL = ""
     var albumArtIsLoading = true
+    var currentSongDuration = "" //in milliseconds
 
     let playIcon = #imageLiteral(resourceName: "playImage")
     let pauseIcon = #imageLiteral(resourceName: "pauseImage")
@@ -34,8 +39,9 @@ class MusicView: NSView {
     let saveIcon = #imageLiteral(resourceName: "plusImage")
     let songOptionsIcon = #imageLiteral(resourceName: "dropdownIcon")
     let quitIcon = #imageLiteral(resourceName: "quitImage")
+    let settingsIcon = #imageLiteral(resourceName: "settingsImage")
 
-    func setInitialTemplateIcons() {
+    func initialize() {
         playIcon.isTemplate = true
         pauseIcon.isTemplate = true
         nextTrackIcon.isTemplate = true
@@ -45,6 +51,7 @@ class MusicView: NSView {
         saveIcon.isTemplate = true
         songOptionsIcon.isTemplate = true
         quitIcon.isTemplate = true
+        settingsIcon.isTemplate = true
 
         // play/pause icon is set in the setIsPlaying() function
         nextTrackButton.image = nextTrackIcon
@@ -54,6 +61,11 @@ class MusicView: NSView {
         saveButton.image = saveIcon
         songOptionsButton.image = songOptionsIcon
         quitButton.image = quitIcon
+        settingsButton.image = settingsIcon
+
+        songSlider.cell = SpotifySliderCell()
+        songSlider.target = self
+        songSlider.action = #selector(self.sliderChange)
     }
 
     func setSongName(name: String) {
@@ -96,6 +108,35 @@ class MusicView: NSView {
                 loopButton.setNextState()
             }
         }
+    }
+
+    func setTimeElapsed(seconds: String) {
+        let secondsNum = Double(seconds)
+        let minutes = Int(secondsNum! / 60)
+        let remainingSeconds = Int(secondsNum! - Double(minutes * 60))
+        var leadingChar = ""
+        if remainingSeconds < 10 {
+            leadingChar = "0"
+        }
+        timeElapsedLabel.stringValue = "\(minutes):\(leadingChar)\(remainingSeconds)"
+    }
+
+    func setSongDuration(milliseconds: String) {
+        let secondsNum = Int(Double(milliseconds)! / 1000)
+        let minutes = secondsNum / 60
+        let remainingSeconds = secondsNum - (minutes * 60)
+        var leadingChar = ""
+        if remainingSeconds < 10 {
+            leadingChar = "0"
+        }
+        songDurationLabel.stringValue = "\(minutes):\(leadingChar)\(remainingSeconds)"
+    }
+
+    func setSongSliderValue(seconds: String) {
+        let elapsedSecondsNum = Double(seconds)!
+        let durationSecondsNum = Int(Double(currentSongDuration)! / 1000)
+
+        songSlider.doubleValue = elapsedSecondsNum / Double(durationSecondsNum)
     }
 
     func setAlbumArtwork(url: String) {
@@ -144,6 +185,10 @@ class MusicView: NSView {
         setAlbumArtwork(url: SpotifyLocalAPI.getCurrentAlbumArtURL())
         setShuffle(enabled: SpotifyLocalAPI.getShufflingStatus())
         setLoop(enabled: SpotifyLocalAPI.getRepeatingStatus())
+        setTimeElapsed(seconds: SpotifyLocalAPI.getCurrentSongPosition())
+        currentSongDuration = SpotifyLocalAPI.getCurrentSongDuration()
+        setSongDuration(milliseconds: currentSongDuration)
+        setSongSliderValue(seconds: SpotifyLocalAPI.getCurrentSongPosition())
     }
 
     func play() {
@@ -154,6 +199,11 @@ class MusicView: NSView {
     func pause() {
         playPauseButton.image = playIcon
         SpotifyLocalAPI.pause()
+    }
+
+    func sliderChange() {
+        let durationSecondsNum = Double(currentSongDuration)! / 1000
+        SpotifyLocalAPI.setCurrentSongPosition(seconds: songSlider.doubleValue * durationSecondsNum)
     }
 
     @IBAction func playPauseToggle(_ sender: NSButton) {

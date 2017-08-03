@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E0464AE1F2F207F0040BCC0 /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0464AD1F2F207F0040BCC0 /* MusicView.swift */; };
 		8E4F3CEF1F312DF7008CFF04 /* SpotifyLocalAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F3CEE1F312DF7008CFF04 /* SpotifyLocalAPI.swift */; };
+		8E5DADF41F32A94E0042E6F3 /* SpotifySliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5DADF31F32A94E0042E6F3 /* SpotifySliderCell.swift */; };
 		8EA2AE2F1E551C4E00E5FDA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2AE2E1E551C4E00E5FDA4 /* AppDelegate.swift */; };
 		8EA2AE311E551C4E00E5FDA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2AE301E551C4E00E5FDA4 /* Assets.xcassets */; };
 		8EA2AE341E551C4E00E5FDA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2AE321E551C4E00E5FDA4 /* MainMenu.xib */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		8E0464AD1F2F207F0040BCC0 /* MusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicView.swift; sourceTree = "<group>"; };
 		8E4F3CEE1F312DF7008CFF04 /* SpotifyLocalAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLocalAPI.swift; sourceTree = "<group>"; };
+		8E5DADF31F32A94E0042E6F3 /* SpotifySliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifySliderCell.swift; sourceTree = "<group>"; };
 		8EA2AE2B1E551C4E00E5FDA4 /* MiniSpotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniSpotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA2AE2E1E551C4E00E5FDA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EA2AE301E551C4E00E5FDA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				8EA2AE3F1E55247100E5FDA4 /* StatusMenuController.swift */,
 				8EA2AE351E551C4E00E5FDA4 /* Info.plist */,
 				8E4F3CEE1F312DF7008CFF04 /* SpotifyLocalAPI.swift */,
+				8E5DADF31F32A94E0042E6F3 /* SpotifySliderCell.swift */,
 			);
 			path = MiniSpotify;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				8EA2AE401E55247100E5FDA4 /* StatusMenuController.swift in Sources */,
 				8E0464AE1F2F207F0040BCC0 /* MusicView.swift in Sources */,
+				8E5DADF41F32A94E0042E6F3 /* SpotifySliderCell.swift in Sources */,
 				8EA2AE2F1E551C4E00E5FDA4 /* AppDelegate.swift in Sources */,
 				8E4F3CEF1F312DF7008CFF04 /* SpotifyLocalAPI.swift in Sources */,
 			);
