@@ -10,163 +10,90 @@ import Foundation
 
 class SpotifyLocalAPI {
 
-    static func getCurrentSongName() -> String {
-        var songName = ""
-        let script =    "tell application \"Spotify\"\n" +
-                            "set currentTrackName to name of current track as string\n" +
-                        "end tell\n" 
+    static let baseAPIString = "tell application \"Spotify\" to "
+
+    private static func retriveValue(from command: String) -> String {
+        var result = ""
+        let script = SpotifyLocalAPI.baseAPIString + command
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            songName = output.stringValue ?? "No Song Playing"
+            result = output.stringValue ?? "N/A"
         }
-        return songName
+        return result
+    }
+
+    private static func perform(verb: String) {
+        let script = SpotifyLocalAPI.baseAPIString + verb
+        var error: NSDictionary?
+        NSAppleScript(source: script)?.executeAndReturnError(&error)
+    }
+
+    static func getCurrentSongName() -> String {
+        return retriveValue(from: "get name of current track as string")
     }
 
     static func getCurrentArtist() -> String {
-        var artist = ""
-        let script =    "tell application \"Spotify\"\n" +
-                            "set currentArtist to artist of current track as string\n" +
-                        "end tell\n"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            artist = output.stringValue ?? "N/A"
-        }
-        return artist
+        return retriveValue(from: "get artist of current track as string")
     }
 
     static func getPlayerState() -> String {
-        var state = ""
-        let script =    "tell application \"Spotify\"\n" +
-                            "set currentState to player state as string\n" +
-                        "end tell\n"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            state = output.stringValue ?? "N/A"
-        }
-        return state
+        return retriveValue(from: "get player state as string")
     }
 
     static func getCurrentAlbumArtURL() -> String {
-        var url = ""
-        let script =    "tell application \"Spotify\"\n" +
-                            "set artUrl to artwork url of current track as string\n" +
-                        "end tell"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            url = output.stringValue ?? "N/A"
-        }
-        return url
+        return retriveValue(from: "get artwork url of current track as string")
     }
 
     static func getCurrentSongDuration() -> String {
-        var duration = ""
-        let script =    "tell application \"Spotify\"\n" +
-                            "set songDuration to duration of current track as string\n" +
-                        "end tell"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            duration = output.stringValue ?? "N/A"
-        }
-        return duration
+        return retriveValue(from: "get duration of current track as string")
     }
 
     static func getCurrentSongPosition() -> String {
-        var position = ""
-        let script =    "tell application \"Spotify\" to set position to player position"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            position = output.stringValue ?? "N/A"
-        }
-        return position
+        return retriveValue(from: "get player position as string")
     }
 
     static func setCurrentSongPosition(seconds: Double) {
-        let script = "tell application \"Spotify\" to set player position to \(seconds)"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "set player position to \(seconds)")
     }
 
     static func getShufflingStatus() -> Bool {
-        var shuffling = false
-        let script =    "tell application \"Spotify\"\n" +
-                            "set shuffleIsOn to shuffling as string\n" +
-                        "end tell"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            if output.stringValue == "true" {
-                shuffling = true
-            }
-        }
-        return shuffling
+        return Bool(retriveValue(from: "get shuffling as string"))!
     }
 
     static func getRepeatingStatus() -> Bool {
-        var loop = false
-        let script =    "tell application \"Spotify\"\n" +
-                            "set LoopIsOn to repeating as string\n" +
-                        "end tell"
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-            if output.stringValue == "true" {
-                loop = true
-            }
-        }
-        return loop
+        return Bool(retriveValue(from: "get repeating as string"))!
     }
 
     static func enableShuffle() {
-        let script = "tell application \"Spotify\" to set shuffling to true"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "set shuffling to true")
     }
 
     static func disableShuffle() {
-        let script = "tell application \"Spotify\" to set shuffling to false"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "set shuffling to false")
     }
 
     static func enableLoop() {
-        let script = "tell application \"Spotify\" to set repeating to true"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "set repeating to true")
     }
 
     static func disableLoop() {
-        let script = "tell application \"Spotify\" to set repeating to false"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "set repeating to false")
     }
 
     static func play() {
-        let script = "tell application \"Spotify\" to play"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "play")
     }
 
     static func pause() {
-        let script = "tell application \"Spotify\" to pause"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "pause")
     }
 
     static func nextTrack() {
-        let script = "tell application \"Spotify\" to next track"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "next track")
     }
 
     static func previousTrack() {
-        let script = "tell application \"Spotify\" to previous track"
-        var error: NSDictionary?
-        NSAppleScript(source: script)?.executeAndReturnError(&error)
+        perform(verb: "previous track")
     }
 }
