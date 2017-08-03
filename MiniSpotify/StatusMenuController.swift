@@ -34,14 +34,22 @@ class StatusMenuController: NSObject, NSMenuDelegate {
 
         // update song info upon start and every 0.1 seconds thereafter
         musicView.updateSongData()
-        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        let everyTenthOfASecond = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updatePlayPause), userInfo: nil, repeats: true)
+        let everySecond = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
         let rl = RunLoop.main
-        rl.add(timer, forMode: RunLoopMode.commonModes)
+        rl.add(everyTenthOfASecond, forMode: RunLoopMode.commonModes)
+        rl.add(everySecond, forMode: RunLoopMode.commonModes)
     }
 
     func update() {
         if menuIsOpen {
             musicView.updateSongData()
+        }
+    }
+
+    func updatePlayPause() {
+        if menuIsOpen {
+            musicView.updatePlayPause()
         }
     }
 

@@ -181,7 +181,6 @@ class MusicView: NSView {
     func updateSongData() {
         setSongName(name: SpotifyLocalAPI.getCurrentSongName())
         setArtist(name: SpotifyLocalAPI.getCurrentArtist())
-        setIsPlaying(state: SpotifyLocalAPI.getPlayerState())
         setAlbumArtwork(url: SpotifyLocalAPI.getCurrentAlbumArtURL())
         setShuffle(enabled: SpotifyLocalAPI.getShufflingStatus())
         setLoop(enabled: SpotifyLocalAPI.getRepeatingStatus())
@@ -189,6 +188,10 @@ class MusicView: NSView {
         currentSongDuration = SpotifyLocalAPI.getCurrentSongDuration()
         setSongDuration(milliseconds: currentSongDuration)
         setSongSliderValue(seconds: SpotifyLocalAPI.getCurrentSongPosition())
+    }
+
+    func updatePlayPause() {
+        setIsPlaying(state: SpotifyLocalAPI.getPlayerState())
     }
 
     func play() {

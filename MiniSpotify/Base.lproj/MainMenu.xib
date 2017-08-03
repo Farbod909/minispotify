@@ -30,7 +30,7 @@
             <point key="canvasLocation" x="474" y="141"/>
         </menu>
         <customView id="z6L-6M-KhE" customClass="MusicView" customModule="MiniSpotify" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="383" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsV-VA-RqP">
@@ -72,7 +72,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-4S-LYk">
-                    <rect key="frame" x="111" y="72" width="241" height="21"/>
+                    <rect key="frame" x="111" y="72" width="227" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Song Name" id="9Th-dH-6yH">
                         <font key="font" metaFont="system" size="17"/>
@@ -81,7 +81,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qy-06F">
-                    <rect key="frame" x="111" y="53" width="241" height="17"/>
+                    <rect key="frame" x="111" y="53" width="227" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Artist" id="XUI-gN-JUh">
                         <font key="font" metaFont="system"/>
@@ -90,7 +90,7 @@
                     </textFieldCell>
                 </textField>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDB-8k-oBe">
-                    <rect key="frame" x="365" y="0.0" width="14" height="14"/>
+                    <rect key="frame" x="349" y="0.0" width="14" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="quitImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="eXB-Up-yCU">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -123,7 +123,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfn-vW-CfN">
-                    <rect key="frame" x="358" y="74" width="16" height="16"/>
+                    <rect key="frame" x="341" y="74" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="plusImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Jyd-zM-Hem">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -131,7 +131,7 @@
                     </buttonCell>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb3-b6-jwa">
-                    <rect key="frame" x="360" y="53" width="12" height="12"/>
+                    <rect key="frame" x="343" y="53" width="12" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="dropdownIcon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="02X-ky-BYg">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -146,7 +146,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52Y-Bf-FZJ">
                     <rect key="frame" x="310" y="-5" width="32" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="-:--" id="fsb-nB-lMe">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="--:--" id="fsb-nB-lMe">
                         <font key="font" metaFont="system" size="10"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -162,7 +162,7 @@
                     </textFieldCell>
                 </textField>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihS-hQ-wVY">
-                    <rect key="frame" x="348" y="0.0" width="14" height="14"/>
+                    <rect key="frame" x="349" y="17" width="14" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="settingsImage" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ggm-Or-Vts">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -187,7 +187,7 @@
                 <outlet property="songSlider" destination="Lpe-zY-lVs" id="78B-fY-FSQ"/>
                 <outlet property="timeElapsedLabel" destination="EKw-Ny-cVT" id="liO-Yt-Q8E"/>
             </connections>
-            <point key="canvasLocation" x="609.5" y="238"/>
+            <point key="canvasLocation" x="601" y="238"/>
         </customView>
         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="K5M-c6-fd2">
             <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
