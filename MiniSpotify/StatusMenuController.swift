@@ -12,10 +12,9 @@ class StatusMenuController: NSObject, NSMenuDelegate {
     
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var musicView: MusicView!
+
     var musicMenuItem: NSMenuItem!
-
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-
     var menuIsOpen = false
     
     override func awakeFromNib() {

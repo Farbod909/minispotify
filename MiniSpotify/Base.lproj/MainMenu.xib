@@ -168,6 +168,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="settingsClicked:" target="z6L-6M-KhE" id="yvI-oc-rQ2"/>
+                    </connections>
                 </button>
             </subviews>
             <connections>

@@ -25,6 +25,8 @@ class MusicView: NSView {
     @IBOutlet weak var timeElapsedLabel: NSTextField!
     @IBOutlet weak var songDurationLabel: NSTextField!
 
+    var preferencesWindow: PreferencesWindow!
+
     var isPlaying = false
     var currentAlbumArtURL = ""
     var albumArtIsLoading = true
@@ -42,6 +44,8 @@ class MusicView: NSView {
     let settingsIcon = #imageLiteral(resourceName: "settingsImage")
 
     func initialize() {
+        preferencesWindow = PreferencesWindow()
+
         playIcon.isTemplate = true
         pauseIcon.isTemplate = true
         nextTrackIcon.isTemplate = true
@@ -278,6 +282,10 @@ class MusicView: NSView {
             // user clicked the loop button to enable it
             SpotifyLocalAPI.enableLoop()
         }
+    }
+
+    @IBAction func settingsClicked(_ sender: NSButton) {
+        preferencesWindow.showWindow(nil)
     }
 
     @IBAction func quitApplication(_ sender: NSButton) {
